@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="shortcut icon" href="./Assets/quest_5444484.png" type="image/x-icon">
+    <title>QUIZ WEB </title>  
+    <!-- <title>Quiz App</title> -->
+  </head>
+  <body>
+    <video class="background-video" autoplay loop muted>
+      <source src="./Assets/abstract-planet-moewalls-com_2.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+  
+    <div class="container">
+      <div class="start-screen">
+        <h1 class="heading">Quiz Web</h1>
+        <div class="settings">
+          <label for="name">NAME</label>
+          <input type="text" id="name" placeholder="Enter your Name" required >
+          
+          <label for="email">EMAIL</label>
+          <input type="email" id="email" placeholder="Enter your Email" required >
+          
+          <label for="rollno">Roll no</label>
+          <input type="text" id="rollno" placeholder="Enter your 4 digit Roll no." required >
+          <label for="time">Select time per question:</label>
+          <select id="time">
+            <option value="10">10 seconds</option>
+            <option value="15">15 seconds</option>
+            <option value="20">20 seconds</option>
+            <option value="25">25 seconds</option>
+            <option value="30">30 seconds</option>
+            <option value="60">60 seconds</option>
+          </select>
+        </div>
+        <button class="btn start">Start Quiz</button>
+      </div>
+      <div class="quiz hide">
+        <div class="timer">
+          <div class="progress">
+            <div class="progress-bar"></div>
+            <span class="progress-text"></span>
+          </div>
+        </div>
+        <div class="question-wrapper">
+          <div class="number">
+            Question <span class="current">1</span>
+            <span class="total">/10</span>
+          </div>
+          <div class="question">This is a question This is a question?</div>
+        </div>
+        <div class="answer-wrapper">
+          <div class="answer selected">
+            <span class="text">answer</span>
+            <span class="checkbox">
+              <i class="fas fa-check"></i>
+            </span>
+          </div>
+        </div>
+        <button class="btn submit" disabled>Submit</button>
+        <button class="btn next">Next</button>
+      </div>
+      <div class="end-screen hide">
+        <h1 class="heading">Quiz Web</h1>
+        <div class="score">
+          <span class="score-text">Your score:</span><br>
+          <div>
+            <span class="final-score">0</span>
+            <span class="total-score">/10</span>
+          </div>
+          <span class="Percentage">Percentage:</span><br>
+          <span class="grade">Grade:</span><br>
+        </div>
+        <button class="btn restart">Restart Quiz</button>
+      
+      </div>
+    </div>
+    
+    <script src="script.js"></script>
+
+    
+  </body>
+</html>
