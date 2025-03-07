@@ -37,7 +37,7 @@ body {
 .heading {
   text-align: center;
   font-size: 40px;
-  color: #fff;
+  color: #0c80ef;
   margin-bottom: 50px;
 }
 label {
@@ -204,19 +204,58 @@ input{
   display: none;
 }
 
+/* End screen score box styling */
 .end-screen .score {
   color: #fff;
-  font-size: 25px;
-  font-weight: 500;
-  margin-bottom: 80px;
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 50px;
+  padding: 20px;
+  margin-left: 40px;
+  background: rgba(255, 255, 255, 0.1); /* Light transparent background */
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2); /* Soft glowing shadow */
+  display: inline-block;
   text-align: center;
+  animation: fadeIn 1s ease-in-out; /* Smooth fade-in animation */
 }
+
+/* Score text styling */
 .score .score-text {
-  color: #a2aace;
-  font-size: 16px;
-  font-weight: 500;
-  margin-bottom: 120px;
+  color: #0c80ef; /* Bright golden color */
+  font-size: 20px;
+  font-weight: 600;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  letter-spacing: 1px;
 }
+
+/* Final score styling */
+.final-score {
+  font-size: 40px;
+  font-weight: bold;
+  color: #00ffcc; /* Neon Green */
+  text-shadow: 0 0 10px rgba(0, 255, 204, 0.8);
+}
+
+/* Total score styling */
+.total-score {
+  font-size: 35px;
+  color: #ffffff;
+  font-weight: bold;
+}
+
+/* Percentage and Grade Styling */
+.Percentage, .grade {
+  font-size: 22px;
+  font-weight: bold;
+  color: #ffcc00; /* Golden color */
+  text-shadow: 0 0 8px rgba(255, 204, 0, 0.8);
+}
+
+/* Fade-in animation */
+
+
 /* 
 .answer.correct {
   background-color: #32cd32;
