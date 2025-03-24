@@ -204,7 +204,7 @@ input{
   display: none;
 }
 
-/* End screen score box styling */
+
 .end-screen .score {
   color: #fff;
   font-size: 28px;
@@ -212,17 +212,17 @@ input{
   margin-bottom: 50px;
   padding: 20px;
   margin-left: 40px;
-  background: rgba(255, 255, 255, 0.1); /* Light transparent background */
+  background: rgba(255, 255, 255, 0.1); 
   border-radius: 12px;
-  box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2); /* Soft glowing shadow */
+  box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2); 
   display: inline-block;
   text-align: center;
-  animation: fadeIn 1s ease-in-out; /* Smooth fade-in animation */
+  animation: fadeIn 1s ease-in-out; 
 }
 
-/* Score text styling */
+
 .score .score-text {
-  color: #0c80ef; /* Bright golden color */
+  color: #ffcc00; 
   font-size: 20px;
   font-weight: 600;
   text-transform: uppercase;
@@ -230,26 +230,25 @@ input{
   letter-spacing: 1px;
 }
 
-/* Final score styling */
+
 .final-score {
   font-size: 40px;
   font-weight: bold;
-  color: #0c80ef; /* Neon Green */
-  text-shadow: 0 0 10px rgba(0, 255, 204, 0.8);
+  color: white; 
 }
 
-/* Total score styling */
+
 .total-score {
   font-size: 35px;
   color: #ffffff;
   font-weight: bold;
 }
 
-/* Percentage and Grade Styling */
+
 .Percentage, .grade {
   font-size: 22px;
   font-weight: bold;
-  color: #ffcc00; /* Golden color */
+  color: #ffcc00; 
   text-shadow: 0 0 8px rgba(255, 204, 0, 0.8);
 }
 
