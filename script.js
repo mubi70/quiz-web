@@ -1,40 +1,40 @@
-// Select DOM elements for the progress bar and progress text
+// Progress bar aur progress text ke HTML elements ko select karte hain
 const progressBar = document.querySelector(".progress-bar"),
   progressText = document.querySelector(".progress-text");
 
-// Function to update the progress bar and text based on the current time
+// Current time ke hisaab se progress bar aur text ko update karne wala function
 const progress = (value) => {
-  const percentage = (value / time) * 100; // Calculate percentage of time remaining
-  progressBar.style.width = `${percentage}%`; // Update progress bar width
-  progressText.innerHTML = `${value}`; // Update progress text
+  const percentage = (value / time) * 100; /// Bacha hua time ka percentage calculate karte hain
+  progressBar.style.width = `${percentage}%`; // Progress bar ki width update karte hain
+  progressText.innerHTML = `${value}`; // Progress text ko update karte hain
 };
 
-// Select DOM elements for buttons, time input, quiz container, and start screen
+// Buttons, time input, quiz container, aur start screen ke HTML elements ko select karte hain
 const startBtn = document.querySelector(".start"),
   timePerQuestion = document.querySelector("#time"),
   quiz = document.querySelector(".quiz"),
   startScreen = document.querySelector(".start-screen");
 
-// Select DOM elements for submit and next buttons
+// Submit aur next buttons ke HTML elements ko select karte hain
 const submitBtn = document.querySelector(".submit"),
   nextBtn = document.querySelector(".next");
 
-// Function to display a loading animation on the start button
+// Start button par loading animation dikhane wala function
 const loadingAnimation = () => {
   startBtn.innerHTML = "Loading"; // Set initial text
   const interval = setInterval(() => {
     if (startBtn.innerHTML.length === 10) {
-      startBtn.innerHTML = "Loading"; // Reset text if it reaches 10 characters
+      startBtn.innerHTML = "Loading"; //// Agar text 10 characters tak pahunch jaye to usse reset karte hain
     } else {
-      startBtn.innerHTML += "."; // Add a dot to the text
+      startBtn.innerHTML += "."; /// Text me ek dot add karte hain
     }
-  }, 500); // Update every 500ms
+  }, 500); /// Har 500ms me update karte hain
 
-  // Clear the interval after 1 second
+  /// 1 second ke baad interval ko clear karte hain
   setTimeout(() => clearInterval(interval), 1000);
 };
 
-// Array of questions with their correct and incorrect answers
+/// Questions ka array jisme correct aur incorrect answers diye gaye hain
 let questions = [
   { question: "How do you declare a variable in JavaScript?", correct_answer: "var", incorrect_answers: ["let", "const"] },
   { question: "Which of these is used to define a function in JavaScript?", correct_answer: "function myFunction()", incorrect_answers: ["def myFunction()"] },
@@ -68,12 +68,12 @@ let questions = [
   { question: "Which method is used to get the last element of an array in JavaScript?", correct_answer: "pop()", incorrect_answers: ["shift()", "slice()", "peek()"] },
 ];
 
-// Function to get a random number of options (between 2 and 4) for a question
+// // Ek sawal ke liye random number of options (2 se 4 ke beech) get karne wala function
 const getRandomNumberOfOptions = () => {
   return Math.floor(Math.random() * 3) + 2; // Random number between 2 and 4
 };
 
-// Function to display a multiple-choice question
+// // Multiple-choice question dikhane wala function
 const showMcq = (question) => {
   const questionText = document.querySelector(".question"),
     answersWrapper = document.querySelector(".answer-wrapper");
@@ -87,24 +87,24 @@ const showMcq = (question) => {
     question.correct_answer.toString(),
   ];
 
-  // Get a random number of options for the current question
-  const numOptions = getRandomNumberOfOptions();
+// Current sawal ke liye random number of options get karte hain
+const numOptions = getRandomNumberOfOptions();
 
-  // Remove extra options if there are more than the required number
-  while (answers.length > numOptions) {
+// Agar required number se zyada options hain to extra options hata dete hain
+while (answers.length > numOptions) {
     answers.pop();
   }
 
-  // Add placeholders or repeats if there are fewer than the required number of options
-  while (answers.length < numOptions) {
+// Agar required number se kam options hain to placeholders ya repeats add karte hain
+while (answers.length < numOptions) {
     answers.push(answers[Math.floor(Math.random() * answers.length)]);
   }
 
-  // Shuffle the answers randomly
-  answers.sort(() => Math.random() - 0.5);
+// Answers ko randomly shuffle karte hain
+answers.sort(() => Math.random() - 0.5);
 
-  // Clear previous answers and display new ones
-  answersWrapper.innerHTML = "";
+// Pehle ke answers clear karte hain aur naye answers display karte hain
+answersWrapper.innerHTML = "";
   answers.forEach((answer) => {
     answersWrapper.innerHTML += `
       <div class="answer">
@@ -116,17 +116,17 @@ const showMcq = (question) => {
     `;
   });
 
-  // Update the question number display
-  questionNumber.innerHTML = ` Question <span class="current">${questions.indexOf(question) + 1}</span>
+// Question number ka display update karte hain
+questionNumber.innerHTML = ` Question <span class="current">${questions.indexOf(question) + 1}</span>
             <span class="total">/${questions.length}</span>`;
 
-  // Add event listeners to answer options
-  const answersDiv = document.querySelectorAll(".answer");
+// Answer par event listeners add karte hain
+const answersDiv = document.querySelectorAll(".answer");
   answersDiv.forEach((answer) => {
     answer.addEventListener("click", () => {
       if (!answer.classList.contains("checked")) {
         answersDiv.forEach((answer) => {
-          answer.classList.remove("selected"); // Deselect other answers
+          answer.classList.remove("selected"); // Baaki answers ko deselect karte hain
         });
         answer.classList.add("selected"); // Select the clicked answer
         submitBtn.disabled = false; // Enable the submit button
@@ -134,31 +134,31 @@ const showMcq = (question) => {
     });
   });
 
-  // Start the timer for the question
-  time = timePerQuestion.value;
+// Question ke liye timer start karte hain
+time = timePerQuestion.value;
   startTimer(time);
 };
 
-// Variables to track time, score, current question, and timer
+// Time, score, current question, aur timer ko track karne ke liye variables
 let time = 30,
   score = 0,
   currentQuestion,
   timer;
 
-// Function to start the quiz after validating user input
+// User input validate karne ke baad quiz start karne wala function
 const startQuiz = () => {
   const name = document.getElementById('name').value.trim();
   const email = document.getElementById('email').value.trim();
   const rollno = document.getElementById('rollno').value.trim();
 
-  // Validate name
-  if (name === '') {
+// Name ko validate karte hain
+if (name === '') {
     alert('Please enter your Name.');
     return;
   }
 
-  // Validate roll number (must be 4 digits)
-  if (rollno === '') {
+// Roll number ko validate karte hain (4 digits hona chahiye)
+if (rollno === '') {
     alert('Please enter your Roll number.');
     return;
   } else if (rollno.length !== 4 || isNaN(rollno)) {
@@ -166,8 +166,8 @@ const startQuiz = () => {
     return;
   }
 
-  // Validate email format
-  if (email === '') {
+// Email format ko validate karte hain
+if (email === '') {
     alert('Please enter your Email.');
     return;
   }
@@ -176,8 +176,8 @@ const startQuiz = () => {
     return;
   }
 
-  // Show loading animation and start the quiz after 1 second
-  loadingAnimation();
+// Loading animation dikhate hain aur 1 second baad quiz start karte hain
+loadingAnimation();
   setTimeout(() => {
     startScreen.classList.add("hide"); // Hide the start screen
     quiz.classList.remove("hide"); // Show the quiz screen
@@ -186,10 +186,10 @@ const startQuiz = () => {
   }, 1000);
 };
 
-// Add event listener to the start button
+// Start button par event listener add karte hain
 startBtn.addEventListener("click", startQuiz);
 
-// Function to display a question
+// Question display karne wala function
 const showQuestion = (question) => {
   const questionText = document.querySelector(".question"),
     answersWrapper = document.querySelector(".answer-wrapper");
@@ -197,13 +197,13 @@ const showQuestion = (question) => {
 
   questionText.innerHTML = question.question; // Set the question text
 
-  // Combine correct and incorrect answers
-  const answers = [
+// Correct aur incorrect answers ko combine karte hain
+const answers = [
     ...question.incorrect_answers,
     question.correct_answer.toString(),
   ];
   answersWrapper.innerHTML = "";
-  answers.sort(() => Math.random() - 0.5); // Shuffle the answers
+  answers.sort(() => Math.random() - 0.5); //// Answers ko shuffle karte hain
   answers.forEach((answer) => {
     answersWrapper.innerHTML += `
       <div class="answer">
@@ -215,14 +215,14 @@ const showQuestion = (question) => {
     `;
   });
 
-  // Update the question number display
-  questionNumber.innerHTML = ` Question <span class="current">${
+// Question number ka display update karte hain
+questionNumber.innerHTML = ` Question <span class="current">${
     questions.indexOf(question) + 1
   }</span>
             <span class="total">/${questions.length}</span>`;
 
-  // Add event listeners to answer options
-  const answersDiv = document.querySelectorAll(".answer");
+// Answer options par event listeners add karte hain
+const answersDiv = document.querySelectorAll(".answer");
   answersDiv.forEach((answer) => {
     answer.addEventListener("click", () => {
       if (!answer.classList.contains("checked")) {
@@ -235,34 +235,34 @@ const showQuestion = (question) => {
     });
   });
 
-  // Start the timer for the question
-  time = timePerQuestion.value;
+// Question ke liye timer start karte hain
+time = timePerQuestion.value;
   startTimer(time);
 };
 
-// Function to play an audio file
-const playAdudio = (src) => {
+// Audio file play karne wala function
+ const playAdudio = (src) => {
   const audio = new Audio(src);
   audio.play();
 };
 
-// Function to start the timer for a question
+// Question ke liye timer start karne wala function
 const startTimer = (time) => {
   timer = setInterval(() => {
     if (time === 3) {
-      playAdudio("./Assets/countdown.mp3"); // Play countdown sound at 3 seconds
+      playAdudio("./Assets/countdown.mp3"); // 3 seconds par countdown sound play karte hain
     }
     if (time >= 0) {
-      progress(time); // Update progress bar
+      progress(time); // Progress bar ko update karte hain
       time--;
     } else {
-      clearInterval(timer); // Stop the timer
-      checkAnswer(); // Check the answer when time runs out
+      clearInterval(timer); // Timer ko stop karte hain
+      checkAnswer(); // Jab time khatam ho jaye tab answer check karte hain
     }
-  }, 1000); // Update every second
+  }, 1000); // Har second update karte hain
 };
 
-// Function to define a custom property (unused in this code)
+// Custom property define karne wala function (is code me use nahi hua)
 function defineProperty() {
   var nextBtn = document.createElement("div");
   nextBtn.style.position = "absolute";

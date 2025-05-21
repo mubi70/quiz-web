@@ -252,6 +252,13 @@ input{
   text-shadow: 0 0 8px rgba(255, 204, 0, 0.8);
 }
 
+#email::placeholder {
+    text-transform: lowercase;
+  }
+
+  #email {
+    text-transform: lowercase;
+  }
 /* Fade-in animation */
 
 
