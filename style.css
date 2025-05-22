@@ -28,26 +28,29 @@ body {
 }
 
 #welcomeModal .modal-content {
-  background: #273746;
+  background: black;
   padding: 30px 50px;
   border-radius: 10px;
   text-align: center;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    color: #0c80ef;
+
 }
 
 #welcomeModal .modal-content button {
   padding: 10px 20px;
   font-size: 16px;
   border: none;
-  background-color: #007bff;
-  color: #fff;
+  background-color: #0c80ef;
+  color: white;
   border-radius: 5px;
   cursor: pointer;
+  margin-top: 20px;
   transition: background-color 0.3s ease;
 }
 
 #welcomeModal .modal-content button:hover {
-  background-color: #00FFFF	;
+  background-color: #006199;
   color: black;
 }
 
