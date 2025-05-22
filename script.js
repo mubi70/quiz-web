@@ -397,3 +397,11 @@ const restartBtn = document.querySelector(".restart");
 restartBtn.addEventListener("click", () => {
   window.location.reload(); // Reload the page to restart the quiz
 });
+  window.onload = function () {
+    document.getElementById("welcomeModal").style.display = "flex";
+  };
+
+  function closeModal() {
+    document.getElementById("welcomeModal").style.display = "none";
+  }
+
