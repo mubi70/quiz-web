@@ -301,17 +301,6 @@ input{
   #email {
     text-transform: lowercase;
   }
-/* Fade-in animation */
-
-
-/* 
-.answer.correct {
-  background-color: #32cd32;
-}
-
-.answer.wrong {
-  background-color: #ff6347;
-} */
 
 
 @media (max-width: 468px) {

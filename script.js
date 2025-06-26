@@ -281,37 +281,37 @@ function defineProperty() {
 
 defineProperty();
 
-// Add event listener to the submit button
+// Submit button ke liye event listener add karo."
 submitBtn.addEventListener("click", () => {
   const selectedAnswer = document.querySelector(".answer.selected");
 
-  // If no answer is selected, show an alert
+  // Agar koi answer select nahi kiya gaya ho to ek alert dikhao.
   if (!selectedAnswer) {
     alert('Please select an answer before submitting!');
     return;
   }
 
-  checkAnswer(); // Check the selected answer
+  checkAnswer(); // Selected answer check karo.
 });
 
-// Add event listener to the next button
+// Next button par event listener lagao.
 nextBtn.addEventListener("click", () => {
   nextQuestion(); // Move to the next question
   submitBtn.style.display = "block"; // Show the submit button
   nextBtn.style.display = "none"; // Hide the next button
 });
 
-// Function to check the selected answer
+// Selected answer check karne wala function.
 const checkAnswer = () => {
   clearInterval(timer); // Stop the timer
   const selectedAnswer = document.querySelector(".answer.selected");
   if (selectedAnswer) {
     const answer = selectedAnswer.querySelector(".text").innerHTML;
     if (answer === questions[currentQuestion - 1].correct_answer) {
-      score++; // Increment score if the answer is correct
-      selectedAnswer.classList.add("correct"); // Mark as correct
+      score++; // Agar answer sahi ho to score increment karo
+      selectedAnswer.classList.add("correct"); // sahi answer
     } else {
-      selectedAnswer.classList.add("wrong"); // Mark as wrong
+      selectedAnswer.classList.add("wrong"); // ghalat answer
       document
         .querySelectorAll(".answer")
         .forEach((answer) => {
@@ -319,12 +319,12 @@ const checkAnswer = () => {
             answer.querySelector(".text").innerHTML ===
             questions[currentQuestion - 1].correct_answer
           ) {
-            answer.classList.add("correct"); // Highlight the correct answer
+            answer.classList.add("correct"); // Correct answer ko highlight karo
           }
         });
     }
   } else {
-    // If no answer is selected, highlight the correct answer
+    // Agar koi answer select nahi kiya gaya ho to correct answer ko highlight karo
     document
       .querySelectorAll(".answer")
       .forEach((answer) => {
@@ -337,46 +337,46 @@ const checkAnswer = () => {
       });
   }
 
-  // Disable further interaction with the answers
+  //Answers ke saath aage interaction disable karo
   const answersDiv = document.querySelectorAll(".answer");
   answersDiv.forEach((answer) => {
     answer.classList.add("checked");
   });
 
-  // Show the next button and hide the submit button
+  // Next button dikhao aur submit button chhupao
   submitBtn.style.display = "none";
   nextBtn.style.display = "block";
 };
 
-// Function to move to the next question
+// Next question par jaane wala function
 const nextQuestion = () => {
   if (currentQuestion < questions.length) {
-    currentQuestion++; // Increment the question counter
-    showQuestion(questions[currentQuestion - 1]); // Show the next question
+    currentQuestion++; // Question counter ko increment karo
+    showQuestion(questions[currentQuestion - 1]); // agla question dekhao
   } else {
     showScore(); // If all questions are answered, show the final score
   }
 };
 
-// Select DOM elements for the end screen and score display
+// Agar saare questions answer kar liye gaye hoon to final score dikhao.
 const endScreen = document.querySelector(".end-screen"),
   finalScore = document.querySelector(".final-score"),
   totalScore = document.querySelector(".total-score"),
   percentage = document.querySelector(".Percentage"),
   grade = document.querySelector(".grade");
 
-// Function to display the final score and grade
+// Final score aur grade dikhane wala function
 const showScore = () => {
-  endScreen.classList.remove("hide"); // Show the end screen
+  endScreen.classList.remove("hide"); // end screen dekhao
   quiz.classList.add("hide"); // Hide the quiz screen
-  finalScore.innerHTML = score; // Display the final score
-  totalScore.innerHTML = `/ ${questions.length}`; // Display the total number of questions
+  finalScore.innerHTML = score; // final score dekhao
+  totalScore.innerHTML = `/ ${questions.length}`; // Total number of questions dikhao
 
-  // Calculate and display the percentage score
+  // Percentage score calculate karo aur dikhao
   const percentageScore = (score / questions.length) * 100;
   percentage.innerHTML = "Percentage: " + percentageScore.toFixed(2) + "%";
 
-  // Determine and display the grade based on the percentage score
+  // Percentage score ke basis par grade determine karo aur dikhao
   let gradeValue = '';
   if (percentageScore >= 90) {
     gradeValue = 'A';
@@ -392,10 +392,10 @@ const showScore = () => {
   grade.innerHTML = "Grade: " + gradeValue;
 };
 
-// Add event listener to the restart button
+// Restart button par event listener lagao
 const restartBtn = document.querySelector(".restart");
 restartBtn.addEventListener("click", () => {
-  window.location.reload(); // Reload the page to restart the quiz
+  window.location.reload(); // Quiz dobara shuru karne ke liye page reload karo
 });
   window.onload = function () {
     document.getElementById("welcomeModal").style.display = "flex";
