@@ -98,7 +98,7 @@ select {
   color: #1f2847;
   font-size: 14px;
 }
-input{
+input {
   width: 100%;
   padding: 10px;
   border: none;
@@ -208,7 +208,7 @@ input{
   opacity: 1;
 }
 .answer.correct {
-    border-color: #0cef2a;
+  border-color: #0cef2a;
 }
 .answer.wrong {
   border-color: #fc3939;
@@ -316,11 +316,42 @@ input{
 }
 
 #email::placeholder {
-    text-transform: lowercase;
+  text-transform: lowercase;
 }
 
 #email {
   text-transform: lowercase;
+}
+
+.explanation-popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  z-index: 10000;
+  max-width: 400px;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(8px); /* Added to increase background blur */
+}
+
+.explanation-popup button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background: #0c80ef;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.explanation-popup button:hover {
+  background: #006199;
 }
 
 @media (max-width: 468px) {

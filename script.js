@@ -8,11 +8,13 @@ const progress = (value) => {
   progressBar.style.width = `${percentage}%`; // Progress bar ki width update karte hain
   progressText.innerHTML = `${value}`; // Progress text ko update karte hain
 };
+
 // Buttons, time input, quiz container, aur start screen ke HTML elements ko select karte hain
 const startBtn = document.querySelector(".start"),
   timePerQuestion = document.querySelector("#time"),
   quiz = document.querySelector(".quiz"),
   startScreen = document.querySelector(".start-screen");
+
 // Submit aur next buttons ke HTML elements ko select karte hain
 const submitBtn = document.querySelector(".submit"),
   nextBtn = document.querySelector(".next");
@@ -31,42 +33,45 @@ const loadingAnimation = () => {
   // 1 second ke baad interval ko clear karte hain
   setTimeout(() => clearInterval(interval), 1000);
 };
-// Questions ka array jisme correct aur incorrect answers diye gaye hain
+
+// Questions ka array jisme correct aur incorrect answers aur explanation diye gaye hain
 let questions = [
-  { question: "How do you declare a variable in JavaScript?", correct_answer: "var", incorrect_answers: ["let", "const"] },
-  { question: "Which of these is used to define a function in JavaScript?", correct_answer: "function myFunction()", incorrect_answers: ["def myFunction()"] },
-  { question: "What is the output of 'console.log(2 + 2)' in JavaScript?", correct_answer: "4", incorrect_answers: ["22"] },
-  { question: "Which method is used to add an element to the end of an array?", correct_answer: "push()", incorrect_answers: ["pop()", "shift()"] },
-  { question: "Which of these is the correct way to create a comment in JavaScript?", correct_answer: "// Comment", incorrect_answers: ["/* Commen"] },
-  { question: "What will 'typeof null' return in JavaScript?", correct_answer: "object", incorrect_answers: ["null"] },
-  { question: "How do you check if a value is an array in JavaScript?", correct_answer: "Array.isArray(value)", incorrect_answers: ["value.isArray()", "value instanceof Array"] },
-  { question: "Which of the following is a valid JavaScript data type?", correct_answer: "boolean", incorrect_answers: ["integer"] },
-  { question: "What does 'NaN' stand for in JavaScript?", correct_answer: "Not a Number", incorrect_answers: ["Not a Null"] },
-  { question: "What is the correct way to create an object in JavaScript?", correct_answer: "let obj = {}", incorrect_answers: ["let obj = []", "let obj = ()"] },
-  { question: "Which operator is used for strict equality comparison?", correct_answer: "===", incorrect_answers: ["==", "!="] },
-  { question: "Which keyword is used to create a constant in JavaScript?", correct_answer: "const", incorrect_answers: ["let"] },
-  { question: "Which of the following is the correct way to create a function in JavaScript?", correct_answer: "function myFunction()", incorrect_answers: ["create function myFunction()"] },
-  { question: "What does 'this' keyword refer to in JavaScript?", correct_answer: "The current object", incorrect_answers: ["The global object", "The current function"] },
-  { question: "Which method removes the last element from an array?", correct_answer: "pop()", incorrect_answers: ["push()", "shift()"] },
-  { question: "What will the following code output? console.log(3 * null);", correct_answer: "0", incorrect_answers: ["3", "null"] },
-  { question: "Which method is used to remove an element from the beginning of an array?", correct_answer: "shift()", incorrect_answers: ["unshift()", "pop()"] },
-  { question: "What is the result of 2 + '2' in JavaScript?", correct_answer: "'22'", incorrect_answers: ["4", "undefined"] },
-  { question: "Which event is triggered when an element is clicked in JavaScript?", correct_answer: "onclick", incorrect_answers: ["onhover", "onload"] },
-  { question: "How do you declare a function expression in JavaScript?", correct_answer: "const myFunc = function() {}", incorrect_answers: ["function = myFunc() {}", "myFunc() = function() {}"] },
-  { question: "What does the 'new' keyword do in JavaScript?", correct_answer: "Creates a new object", incorrect_answers: ["Creates a new function", "Creates a new variable"] },
-  { question: "What is the default value of a variable declared with 'var' in JavaScript?", correct_answer: "undefined", incorrect_answers: ["null", "0", "NaN"] },
-  { question: "Which of the following is used to add a property to an object in JavaScript?", correct_answer: "obj.property = value", incorrect_answers: ["obj.addProperty(value)", "obj.push(value)", "obj.add(value)"] },
-  { question: "Which method is used to convert a string to lowercase in JavaScript?", correct_answer: "toLowerCase()", incorrect_answers: ["toLower()", "lowerCase()", "convertLower()"] },
-  { question: "What is the result of '5' + 3 in JavaScript?", correct_answer: "'53'", incorrect_answers: ["8", "NaN", "Error"] },
-  { question: "Which method is used to remove whitespace from both ends of a string in JavaScript?", correct_answer: "trim()", incorrect_answers: ["trimSpace()", "removeSpace()", "strip()"] },
-  { question: "What will 'typeof NaN' return in JavaScript?", correct_answer: "number", incorrect_answers: ["NaN", "undefined", "object"] },
-  { question: "Which operator is used to assign a value to a variable in JavaScript?", correct_answer: "=", incorrect_answers: ["==", "===", "!=="] },
-  { question: "What is the result of '10' - 5 in JavaScript?", correct_answer: "5", incorrect_answers: ["'10'", "'15'", "NaN"] },
-  { question: "Which method is used to get the last element of an array in JavaScript?", correct_answer: "pop()", incorrect_answers: ["shift()", "slice()", "peek()"] }
+  { question: "How do you declare a variable in JavaScript?", correct_answer: "var", incorrect_answers: ["let", "const"], explanation: "In JavaScript, variables can be declared using 'var', 'let', or 'const'. 'var' is the older way and has function scope, while 'let' and 'const' have block scope. The correct answer is 'var' as it was specifically asked." },
+  { question: "Which of these is used to define a function in JavaScript?", correct_answer: "function myFunction()", incorrect_answers: ["def myFunction()"], explanation: "'def' is used in Python, not JavaScript. The correct syntax to define a function in JavaScript is 'function myFunction()'." },
+  { question: "What is the output of 'console.log(2 + 2)' in JavaScript?", correct_answer: "4", incorrect_answers: ["22"], explanation: "In JavaScript, the '+' operator performs arithmetic addition for numbers, so 2 + 2 equals 4, not string concatenation which would result in '22'." },
+  { question: "Which method is used to add an element to the end of an array?", correct_answer: "push()", incorrect_answers: ["pop()", "shift()"], explanation: "'push()' adds an element to the end of an array, while 'pop()' removes the last element, and 'shift()' removes the first element." },
+  { question: "Which of these is the correct way to create a comment in JavaScript?", correct_answer: "// Comment", incorrect_answers: ["/* Commen"], explanation: "'// Comment' is the correct syntax for a single-line comment in JavaScript. '/* Commen' is incorrect as it is an incomplete multi-line comment syntax." },
+  { question: "What will 'typeof null' return in JavaScript?", correct_answer: "object", incorrect_answers: ["null"], explanation: "In JavaScript, 'typeof null' returns 'object' due to a historical bug in the language, not 'null'." },
+  { question: "How do you check if a value is an array in JavaScript?", correct_answer: "Array.isArray(value)", incorrect_answers: ["value.isArray()", "value instanceof Array"], explanation: "'Array.isArray(value)' is the most reliable way to check if a value is an array. 'instanceof Array' can fail in some cases, and 'value.isArray()' is not a valid method." },
+  { question: "Which of the following is a valid JavaScript data type?", correct_answer: "boolean", incorrect_answers: ["integer"], explanation: "JavaScript has data types like 'boolean', but 'integer' is not a distinct type; numbers in JavaScript are all 'number' type (floating-point)." },
+  { question: "What does 'NaN' stand for in JavaScript?", correct_answer: "Not a Number", incorrect_answers: ["Not a Null"], explanation: "'NaN' stands for 'Not a Number', indicating an invalid or unrepresentable numerical value, not 'Not a Null'." },
+  { question: "What is the correct way to create an object in JavaScript?", correct_answer: "let obj = {}", incorrect_answers: ["let obj = []", "let obj = ()"], explanation: "'let obj = {}' creates an object. 'let obj = []' creates an array, and 'let obj = ()' is invalid syntax." },
+  { question: "Which operator is used for strict equality comparison?", correct_answer: "===", incorrect_answers: ["==", "!="], explanation: "'===' checks for strict equality (value and type), while '==' performs type coercion, and '!=' is for inequality." },
+  { question: "Which keyword is used to create a constant in JavaScript?", correct_answer: "const", incorrect_answers: ["let"], explanation: "'const' declares a constant that cannot be reassigned, while 'let' allows reassignment." },
+  { question: "Which of the following is the correct way to create a function in JavaScript?", correct_answer: "function myFunction()", incorrect_answers: ["create function myFunction()"], explanation: "'function myFunction()' is the correct syntax. 'create function' is not valid in JavaScript." },
+  { question: "What does 'this' keyword refer to in JavaScript?", correct_answer: "The current object", incorrect_answers: ["The global object", "The current function"], explanation: "'this' refers to the current object in the context it is used, not necessarily the global object or function." },
+  { question: "Which method removes the last element from an array?", correct_answer: "pop()", incorrect_answers: ["push()", "shift()"], explanation: "'pop()' removes the last element, while 'push()' adds to the end, and 'shift()' removes from the start." },
+  { question: "What will the following code output? console.log(3 * null);", correct_answer: "0", incorrect_answers: ["3", "null"], explanation: "In JavaScript, 'null' is coerced to 0 in arithmetic operations, so 3 * null equals 0." },
+  { question: "Which method is used to remove an element from the beginning of an array?", correct_answer: "shift()", incorrect_answers: ["unshift()", "pop()"], explanation: "'shift()' removes the first element, 'unshift()' adds to the start, and 'pop()' removes from the end." },
+  { question: "What is the result of 2 + '2' in JavaScript?", correct_answer: "'22'", incorrect_answers: ["4", "undefined"], explanation: "The '+' operator concatenates when one operand is a string, so 2 + '2' results in '22'." },
+  { question: "Which event is triggered when an element is clicked in JavaScript?", correct_answer: "onclick", incorrect_answers: ["onhover", "onload"], explanation: "'onclick' is the event for a click, while 'onhover' is not a standard event, and 'onload' is for page loading." },
+  { question: "How do you declare a function expression in JavaScript?", correct_answer: "const myFunc = function() {}", incorrect_answers: ["function = myFunc() {}", "myFunc() = function() {}"], explanation: "'const myFunc = function() {}' is a function expression. The other options are invalid syntax." },
+  { question: "What does the 'new' keyword do in JavaScript?", correct_answer: "Creates a new object", incorrect_answers: ["Creates a new function", "Creates a new variable"], explanation: "'new' creates a new object instance, not a function or variable." },
+  { question: "What is the default value of a variable declared with 'var' in JavaScript?", correct_answer: "undefined", incorrect_answers: ["null", "0", "NaN"], explanation: "Variables declared with 'var' are initialized to 'undefined' if no value is assigned." },
+  { question: "Which of the following is used to add a property to an object in JavaScript?", correct_answer: "obj.property = value", incorrect_answers: ["obj.addProperty(value)", "obj.push(value)", "obj.add(value)"], explanation: "'obj.property = value' adds a property. The other methods are either invalid or used for arrays." },
+  { question: "Which method is used to convert a string to lowercase in JavaScript?", correct_answer: "toLowerCase()", incorrect_answers: ["toLower()", "lowerCase()", "convertLower()"], explanation: "'toLowerCase()' is the correct method. The others do not exist in JavaScript." },
+  { question: "What is the result of '5' + 3 in JavaScript?", correct_answer: "'53'", incorrect_answers: ["8", "NaN", "Error"], explanation: "The '+' operator concatenates when one operand is a string, so '5' + 3 results in '53'." },
+  { question: "Which method is used to remove whitespace from both ends of a string in JavaScript?", correct_answer: "trim()", incorrect_answers: ["trimSpace()", "removeSpace()", "strip()"], explanation: "'trim()' removes whitespace from both ends. The other methods are not standard in JavaScript." },
+  { question: "What will 'typeof NaN' return in JavaScript?", correct_answer: "number", incorrect_answers: ["NaN", "undefined", "object"], explanation: "'typeof NaN' returns 'number' because NaN is a special value of the number type." },
+  { question: "Which operator is used to assign a value to a variable in JavaScript?", correct_answer: "=", incorrect_answers: ["==", "===", "!=="], explanation: "'=' is the assignment operator, while '==' and '===' are for comparison, and '!==' is for inequality." },
+  { question: "What is the result of '10' - 5 in JavaScript?", correct_answer: "5", incorrect_answers: ["'10'", "'15'", "NaN"], explanation: "The '-' operator performs arithmetic, converting '10' to a number, so '10' - 5 equals 5." },
+  { question: "Which method is used to get the last element of an array in JavaScript?", correct_answer: "pop()", incorrect_answers: ["shift()", "slice()", "peek()"], explanation: "'pop()' removes and returns the last element. Use 'array[array.length - 1]' to get it without removing." }
 ];
+
 const getRandomNumberOfOptions = () => {
   return Math.floor(Math.random() * 3) + 2; // Random number between 2 and 4
 };
+
 // Multiple-choice question dikhane wala function
 const showMcq = (question) => {
   const questionText = document.querySelector(".question"),
@@ -132,6 +137,7 @@ const showMcq = (question) => {
   time = timePerQuestion.value;
   startTimer(time);
 };
+
 // Time, score, current question, aur timer ko track karne ke liye variables
 let time = 30,
   score = 0,
@@ -178,8 +184,10 @@ const startQuiz = () => {
     showQuestion(questions[0]); // Display the first question
   }, 1000);
 };
+
 // Start button par event listener add karte hain
 startBtn.addEventListener("click", startQuiz);
+
 // Question display karne wala function
 const showQuestion = (question) => {
   const questionText = document.querySelector(".question"),
@@ -230,11 +238,13 @@ const showQuestion = (question) => {
   time = timePerQuestion.value;
   startTimer(time);
 };
+
 // Audio file play karne wala function
 const playAdudio = (src) => {
   const audio = new Audio(src);
   audio.play();
 };
+
 // Question ke liye timer start karne wala function
 const startTimer = (time) => {
   timer = setInterval(() => {
@@ -249,6 +259,14 @@ const startTimer = (time) => {
       checkAnswer(); // Jab time khatam ho jaye tab answer check karte hain
     }
   }, 1000); // Har second update karte hain
+};
+
+// Popup dikhane wala function jab answer ghalat ho
+const showExplanationPopup = (explanation) => {
+  const popup = document.getElementById('explanationPopup');
+  const explanationText = document.getElementById('explanationText');
+  explanationText.innerHTML = explanation;
+  popup.classList.remove('hide');
 };
 
 // Custom property define karne wala function (is code me use nahi hua)
@@ -285,6 +303,8 @@ submitBtn.addEventListener("click", () => {
 
 // Next button par event listener lagao
 nextBtn.addEventListener("click", () => {
+  // Hide the explanation popup when moving to the next question
+  document.getElementById('explanationPopup').classList.add('hide');
   nextQuestion(); // Move to the next question
   submitBtn.style.display = "block"; // Show the submit button
   nextBtn.style.display = "none"; // Hide the next button
@@ -301,6 +321,8 @@ const checkAnswer = () => {
       selectedAnswer.classList.add("correct"); // Sahi answer
     } else {
       selectedAnswer.classList.add("wrong"); // Ghalat answer
+      // Show explanation popup for wrong answer
+      showExplanationPopup(questions[currentQuestion - 1].explanation);
       document
         .querySelectorAll(".answer")
         .forEach((answer) => {
@@ -357,7 +379,7 @@ const endScreen = document.querySelector(".end-screen"),
   statusText = document.querySelector(".status-text");
 
 // Final score aur grade dikhane wala function
-  const showScore = () => {
+const showScore = () => {
   endScreen.classList.remove("hide"); // Show the end-screen
   quiz.classList.add("hide"); // Hide the quiz screen
   finalScore.innerHTML = score;
