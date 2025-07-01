@@ -8,13 +8,11 @@ const progress = (value) => {
   progressBar.style.width = `${percentage}%`; // Progress bar ki width update karte hain
   progressText.innerHTML = `${value}`; // Progress text ko update karte hain
 };
-
 // Buttons, time input, quiz container, aur start screen ke HTML elements ko select karte hain
 const startBtn = document.querySelector(".start"),
   timePerQuestion = document.querySelector("#time"),
   quiz = document.querySelector(".quiz"),
   startScreen = document.querySelector(".start-screen");
-
 // Submit aur next buttons ke HTML elements ko select karte hain
 const submitBtn = document.querySelector(".submit"),
   nextBtn = document.querySelector(".next");
@@ -33,7 +31,6 @@ const loadingAnimation = () => {
   // 1 second ke baad interval ko clear karte hain
   setTimeout(() => clearInterval(interval), 1000);
 };
-
 // Questions ka array jisme correct aur incorrect answers diye gaye hain
 let questions = [
   { question: "How do you declare a variable in JavaScript?", correct_answer: "var", incorrect_answers: ["let", "const"] },
@@ -67,11 +64,9 @@ let questions = [
   { question: "What is the result of '10' - 5 in JavaScript?", correct_answer: "5", incorrect_answers: ["'10'", "'15'", "NaN"] },
   { question: "Which method is used to get the last element of an array in JavaScript?", correct_answer: "pop()", incorrect_answers: ["shift()", "slice()", "peek()"] }
 ];
-
 const getRandomNumberOfOptions = () => {
   return Math.floor(Math.random() * 3) + 2; // Random number between 2 and 4
 };
-
 // Multiple-choice question dikhane wala function
 const showMcq = (question) => {
   const questionText = document.querySelector(".question"),
@@ -137,7 +132,6 @@ const showMcq = (question) => {
   time = timePerQuestion.value;
   startTimer(time);
 };
-
 // Time, score, current question, aur timer ko track karne ke liye variables
 let time = 30,
   score = 0,
@@ -184,10 +178,8 @@ const startQuiz = () => {
     showQuestion(questions[0]); // Display the first question
   }, 1000);
 };
-
 // Start button par event listener add karte hain
 startBtn.addEventListener("click", startQuiz);
-
 // Question display karne wala function
 const showQuestion = (question) => {
   const questionText = document.querySelector(".question"),
@@ -238,13 +230,11 @@ const showQuestion = (question) => {
   time = timePerQuestion.value;
   startTimer(time);
 };
-
 // Audio file play karne wala function
 const playAdudio = (src) => {
   const audio = new Audio(src);
   audio.play();
 };
-
 // Question ke liye timer start karne wala function
 const startTimer = (time) => {
   timer = setInterval(() => {
