@@ -4,7 +4,7 @@ const progressBar = document.querySelector(".progress-bar"),
 
 // Current time ke hisaab se progress bar aur text ko update karne wala function
 const progress = (value) => {
-  const percentage = (value / time) * 100; /// Bacha hua time ka percentage calculate karte hain
+  const percentage = (value / time) * 100; // Bacha hua time ka percentage calculate karte hain
   progressBar.style.width = `${percentage}%`; // Progress bar ki width update karte hain
   progressText.innerHTML = `${value}`; // Progress text ko update karte hain
 };
@@ -24,17 +24,17 @@ const loadingAnimation = () => {
   startBtn.innerHTML = "Loading"; // Set initial text
   const interval = setInterval(() => {
     if (startBtn.innerHTML.length === 10) {
-      startBtn.innerHTML = "Loading"; //// Agar text 10 characters tak pahunch jaye to usse reset karte hain
+      startBtn.innerHTML = "Loading"; // Agar text 10 characters tak pahunch jaye to usse reset karte hain
     } else {
-      startBtn.innerHTML += "."; /// Text me ek dot add karte hain
+      startBtn.innerHTML += "."; // Text me ek dot add karte hain
     }
-  }, 500); /// Har 500ms me update karte hain
+  }, 500); // Har 500ms me update karte hain
 
-  /// 1 second ke baad interval ko clear karte hain
+  // 1 second ke baad interval ko clear karte hain
   setTimeout(() => clearInterval(interval), 1000);
 };
 
-/// Questions ka array jisme correct aur incorrect answers diye gaye hain
+// Questions ka array jisme correct aur incorrect answers diye gaye hain
 let questions = [
   { question: "How do you declare a variable in JavaScript?", correct_answer: "var", incorrect_answers: ["let", "const"] },
   { question: "Which of these is used to define a function in JavaScript?", correct_answer: "function myFunction()", incorrect_answers: ["def myFunction()"] },
@@ -49,7 +49,7 @@ let questions = [
   { question: "Which operator is used for strict equality comparison?", correct_answer: "===", incorrect_answers: ["==", "!="] },
   { question: "Which keyword is used to create a constant in JavaScript?", correct_answer: "const", incorrect_answers: ["let"] },
   { question: "Which of the following is the correct way to create a function in JavaScript?", correct_answer: "function myFunction()", incorrect_answers: ["create function myFunction()"] },
-  { question: "What does the 'this' keyword refer to in JavaScript?", correct_answer: "The current object", incorrect_answers: ["The global object", "The current function"] },
+  { question: "What does 'this' keyword refer to in JavaScript?", correct_answer: "The current object", incorrect_answers: ["The global object", "The current function"] },
   { question: "Which method removes the last element from an array?", correct_answer: "pop()", incorrect_answers: ["push()", "shift()"] },
   { question: "What will the following code output? console.log(3 * null);", correct_answer: "0", incorrect_answers: ["3", "null"] },
   { question: "Which method is used to remove an element from the beginning of an array?", correct_answer: "shift()", incorrect_answers: ["unshift()", "pop()"] },
@@ -65,15 +65,14 @@ let questions = [
   { question: "What will 'typeof NaN' return in JavaScript?", correct_answer: "number", incorrect_answers: ["NaN", "undefined", "object"] },
   { question: "Which operator is used to assign a value to a variable in JavaScript?", correct_answer: "=", incorrect_answers: ["==", "===", "!=="] },
   { question: "What is the result of '10' - 5 in JavaScript?", correct_answer: "5", incorrect_answers: ["'10'", "'15'", "NaN"] },
-  { question: "Which method is used to get the last element of an array in JavaScript?", correct_answer: "pop()", incorrect_answers: ["shift()", "slice()", "peek()"] },
+  { question: "Which method is used to get the last element of an array in JavaScript?", correct_answer: "pop()", incorrect_answers: ["shift()", "slice()", "peek()"] }
 ];
 
-// // Ek sawal ke liye random number of options (2 se 4 ke beech) get karne wala function
 const getRandomNumberOfOptions = () => {
   return Math.floor(Math.random() * 3) + 2; // Random number between 2 and 4
 };
 
-// // Multiple-choice question dikhane wala function
+// Multiple-choice question dikhane wala function
 const showMcq = (question) => {
   const questionText = document.querySelector(".question"),
     answersWrapper = document.querySelector(".answer-wrapper");
@@ -87,24 +86,24 @@ const showMcq = (question) => {
     question.correct_answer.toString(),
   ];
 
-// Current sawal ke liye random number of options get karte hain
-const numOptions = getRandomNumberOfOptions();
+  // Current sawal ke liye random number of options get karte hain
+  const numOptions = getRandomNumberOfOptions();
 
-// Agar required number se zyada options hain to extra options hata dete hain
-while (answers.length > numOptions) {
+  // Agar required number se zyada options hain to extra options hata dete hain
+  while (answers.length > numOptions) {
     answers.pop();
   }
 
-// Agar required number se kam options hain to placeholders ya repeats add karte hain
-while (answers.length < numOptions) {
+  // Agar required number se kam options hain to placeholders ya repeats add karte hain
+  while (answers.length < numOptions) {
     answers.push(answers[Math.floor(Math.random() * answers.length)]);
   }
 
-// Answers ko randomly shuffle karte hain
-answers.sort(() => Math.random() - 0.5);
+  // Answers ko randomly shuffle karte hain
+  answers.sort(() => Math.random() - 0.5);
 
-// Pehle ke answers clear karte hain aur naye answers display karte hain
-answersWrapper.innerHTML = "";
+  // Pehle ke answers clear karte hain aur naye answers display karte hain
+  answersWrapper.innerHTML = "";
   answers.forEach((answer) => {
     answersWrapper.innerHTML += `
       <div class="answer">
@@ -116,12 +115,12 @@ answersWrapper.innerHTML = "";
     `;
   });
 
-// Question number ka display update karte hain
-questionNumber.innerHTML = ` Question <span class="current">${questions.indexOf(question) + 1}</span>
+  // Question number ka display update karte hain
+  questionNumber.innerHTML = ` Question <span class="current">${questions.indexOf(question) + 1}</span>
             <span class="total">/${questions.length}</span>`;
 
-// Answer par event listeners add karte hain
-const answersDiv = document.querySelectorAll(".answer");
+  // Answer par event listeners add karte hain
+  const answersDiv = document.querySelectorAll(".answer");
   answersDiv.forEach((answer) => {
     answer.addEventListener("click", () => {
       if (!answer.classList.contains("checked")) {
@@ -134,8 +133,8 @@ const answersDiv = document.querySelectorAll(".answer");
     });
   });
 
-// Question ke liye timer start karte hain
-time = timePerQuestion.value;
+  // Question ke liye timer start karte hain
+  time = timePerQuestion.value;
   startTimer(time);
 };
 
@@ -151,14 +150,14 @@ const startQuiz = () => {
   const email = document.getElementById('email').value.trim();
   const rollno = document.getElementById('rollno').value.trim();
 
-// Name ko validate karte hain
-if (name === '') {
+  // Name ko validate karte hain
+  if (name === '') {
     alert('Please enter your Name.');
     return;
   }
 
-// Roll number ko validate karte hain (4 digits hona chahiye)
-if (rollno === '') {
+  // Roll number ko validate karte hain (4 digits hona chahiye)
+  if (rollno === '') {
     alert('Please enter your Roll number.');
     return;
   } else if (rollno.length !== 4 || isNaN(rollno)) {
@@ -166,8 +165,8 @@ if (rollno === '') {
     return;
   }
 
-// Email format ko validate karte hain
-if (email === '') {
+  // Email format ko validate karte hain
+  if (email === '') {
     alert('Please enter your Email.');
     return;
   }
@@ -176,8 +175,8 @@ if (email === '') {
     return;
   }
 
-// Loading animation dikhate hain aur 1 second baad quiz start karte hain
-loadingAnimation();
+  // Loading animation dikhate hain aur 1 second baad quiz start karte hain
+  loadingAnimation();
   setTimeout(() => {
     startScreen.classList.add("hide"); // Hide the start screen
     quiz.classList.remove("hide"); // Show the quiz screen
@@ -197,13 +196,13 @@ const showQuestion = (question) => {
 
   questionText.innerHTML = question.question; // Set the question text
 
-// Correct aur incorrect answers ko combine karte hain
-const answers = [
+  // Correct aur incorrect answers ko combine karte hain
+  const answers = [
     ...question.incorrect_answers,
     question.correct_answer.toString(),
   ];
   answersWrapper.innerHTML = "";
-  answers.sort(() => Math.random() - 0.5); //// Answers ko shuffle karte hain
+  answers.sort(() => Math.random() - 0.5); // Answers ko shuffle karte hain
   answers.forEach((answer) => {
     answersWrapper.innerHTML += `
       <div class="answer">
@@ -215,14 +214,14 @@ const answers = [
     `;
   });
 
-// Question number ka display update karte hain
-questionNumber.innerHTML = ` Question <span class="current">${
+  // Question number ka display update karte hain
+  questionNumber.innerHTML = ` Question <span class="current">${
     questions.indexOf(question) + 1
   }</span>
             <span class="total">/${questions.length}</span>`;
 
-// Answer options par event listeners add karte hain
-const answersDiv = document.querySelectorAll(".answer");
+  // Answer options par event listeners add karte hain
+  const answersDiv = document.querySelectorAll(".answer");
   answersDiv.forEach((answer) => {
     answer.addEventListener("click", () => {
       if (!answer.classList.contains("checked")) {
@@ -235,13 +234,13 @@ const answersDiv = document.querySelectorAll(".answer");
     });
   });
 
-// Question ke liye timer start karte hain
-time = timePerQuestion.value;
+  // Question ke liye timer start karte hain
+  time = timePerQuestion.value;
   startTimer(time);
 };
 
 // Audio file play karne wala function
- const playAdudio = (src) => {
+const playAdudio = (src) => {
   const audio = new Audio(src);
   audio.play();
 };
@@ -281,27 +280,27 @@ function defineProperty() {
 
 defineProperty();
 
-// Submit button ke liye event listener add karo."
+// Submit button ke liye event listener add karo
 submitBtn.addEventListener("click", () => {
   const selectedAnswer = document.querySelector(".answer.selected");
 
-  // Agar koi answer select nahi kiya gaya ho to ek alert dikhao.
+  // Agar koi answer select nahi kiya gaya ho to ek alert dikhao
   if (!selectedAnswer) {
     alert('Please select an answer before submitting!');
     return;
   }
 
-  checkAnswer(); // Selected answer check karo.
+  checkAnswer(); // Selected answer check karo
 });
 
-// Next button par event listener lagao.
+// Next button par event listener lagao
 nextBtn.addEventListener("click", () => {
   nextQuestion(); // Move to the next question
   submitBtn.style.display = "block"; // Show the submit button
   nextBtn.style.display = "none"; // Hide the next button
 });
 
-// Selected answer check karne wala function.
+// Selected answer check karne wala function
 const checkAnswer = () => {
   clearInterval(timer); // Stop the timer
   const selectedAnswer = document.querySelector(".answer.selected");
@@ -309,9 +308,9 @@ const checkAnswer = () => {
     const answer = selectedAnswer.querySelector(".text").innerHTML;
     if (answer === questions[currentQuestion - 1].correct_answer) {
       score++; // Agar answer sahi ho to score increment karo
-      selectedAnswer.classList.add("correct"); // sahi answer
+      selectedAnswer.classList.add("correct"); // Sahi answer
     } else {
-      selectedAnswer.classList.add("wrong"); // ghalat answer
+      selectedAnswer.classList.add("wrong"); // Ghalat answer
       document
         .querySelectorAll(".answer")
         .forEach((answer) => {
@@ -337,7 +336,7 @@ const checkAnswer = () => {
       });
   }
 
-  //Answers ke saath aage interaction disable karo
+  // Answers ke saath aage interaction disable karo
   const answersDiv = document.querySelectorAll(".answer");
   answersDiv.forEach((answer) => {
     answer.classList.add("checked");
@@ -352,44 +351,45 @@ const checkAnswer = () => {
 const nextQuestion = () => {
   if (currentQuestion < questions.length) {
     currentQuestion++; // Question counter ko increment karo
-    showQuestion(questions[currentQuestion - 1]); // agla question dekhao
+    showQuestion(questions[currentQuestion - 1]); // Agla question dekhao
   } else {
     showScore(); // If all questions are answered, show the final score
   }
 };
 
-// Agar saare questions answer kar liye gaye hoon to final score dikhao.
+// Agar saare questions answer kar liye gaye hoon to final score dikhao
 const endScreen = document.querySelector(".end-screen"),
   finalScore = document.querySelector(".final-score"),
   totalScore = document.querySelector(".total-score"),
   percentage = document.querySelector(".Percentage"),
-  grade = document.querySelector(".grade");
+  grade = document.querySelector(".grade"),
+  emoji = document.querySelector(".emoji"),
+  statusText = document.querySelector(".status-text");
 
 // Final score aur grade dikhane wala function
-const showScore = () => {
-  endScreen.classList.remove("hide"); // end screen dekhao
+  const showScore = () => {
+  endScreen.classList.remove("hide"); // Show the end-screen
   quiz.classList.add("hide"); // Hide the quiz screen
-  finalScore.innerHTML = score; // final score dekhao
-  totalScore.innerHTML = `/ ${questions.length}`; // Total number of questions dikhao
-
-  // Percentage score calculate karo aur dikhao
+  finalScore.innerHTML = score;
+  totalScore.innerHTML = `/ ${questions.length}`;
   const percentageScore = (score / questions.length) * 100;
   percentage.innerHTML = "Percentage: " + percentageScore.toFixed(2) + "%";
 
-  // Percentage score ke basis par grade determine karo aur dikhao
-  let gradeValue = '';
+  let gradeValue = '', emojiValue = '', status = '';
   if (percentageScore >= 90) {
-    gradeValue = 'A';
+    gradeValue = 'A'; emojiValue = '😊'; status = 'Excellent!';
   } else if (percentageScore >= 80) {
-    gradeValue = 'B';
+    gradeValue = 'B'; emojiValue = '🙂'; status = 'Great job!';
   } else if (percentageScore >= 70) {
-    gradeValue = 'C';
+    gradeValue = 'C'; emojiValue = '😐'; status = 'Good effort!';
   } else if (percentageScore >= 60) {
-    gradeValue = 'D';
+    gradeValue = 'D'; emojiValue = '😕'; status = 'Satisfactory, keep going!';
   } else {
-    gradeValue = 'F';
+    gradeValue = 'F'; emojiValue = '😞'; status = 'Needs improvement';
   }
   grade.innerHTML = "Grade: " + gradeValue;
+  emoji.innerHTML = emojiValue;
+  statusText.innerHTML = status; // Remove the score percentage from here to avoid duplication
 };
 
 // Restart button par event listener lagao
@@ -397,11 +397,11 @@ const restartBtn = document.querySelector(".restart");
 restartBtn.addEventListener("click", () => {
   window.location.reload(); // Quiz dobara shuru karne ke liye page reload karo
 });
-  window.onload = function () {
-    document.getElementById("welcomeModal").style.display = "flex";
-  };
 
-  function closeModal() {
-    document.getElementById("welcomeModal").style.display = "none";
-  }
+window.onload = function () {
+  document.getElementById("welcomeModal").style.display = "flex";
+};
 
+function closeModal() {
+  document.getElementById("welcomeModal").style.display = "none";
+}
